@@ -19,7 +19,11 @@ FUNCTIONAL_TEST=${FUNCTIONAL_TEST:-true}
 
 # prep the host
 if [ "$(which apt-get)" ]; then
-  apt-get install -y build-essential python2.7 python-dev git-core libssl-dev libffi-dev
+  apt-get update && apt-get install -y build-essential python2.7 python-dev git-core libffi-dev libssl-dev
+fi
+
+if [ "$(which yum)" ]; then
+  yum install -y '@Development Tools' python-devel git libffi-devel openssl-devel
 fi
 
 # get pip, if necessary

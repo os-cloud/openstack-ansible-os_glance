@@ -20,6 +20,13 @@
     - glance-install
     - glance-apt-packages
 
+- include: glance_install_yum.yml
+  when:
+    - ansible_pkg_mgr == 'yum'
+  tags:
+    - glance-install
+    - glance-yum-packages
+
 - name: Create developer mode constraint file
   copy:
     dest: "/opt/developer-pip-constraints.txt"
@@ -63,7 +70,6 @@
   tags:
     - glance-install
     - glance-pip-packages
-
 
 - name: Install requires pip packages
   pip:
